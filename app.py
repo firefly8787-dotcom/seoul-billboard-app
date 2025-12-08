@@ -104,6 +104,11 @@ data = pd.DataFrame(worksheet.get_all_records())
 # 컬럼명 앞뒤 공백 제거 (안전용)
 data.columns = data.columns.str.strip()
 
+# 🔥 모든 문자형 컬럼 값의 앞뒤 공백 제거
+for col in data.columns:
+    if data[col].dtype == "object":
+        data[col] = data[col].astype(str).str.strip()
+
 st.title("🎉서울 주요 전광판 광고주 조사🎉")
 
 ###############################################################################
