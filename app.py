@@ -104,6 +104,12 @@ data = pd.DataFrame(worksheet.get_all_records())
 # 컬럼명 앞뒤 공백 제거 (안전용)
 data.columns = data.columns.str.strip()
 
+# ★★★ 이 세 줄을 추가해주세요 ★★★
+for col in data.columns:
+    if data[col].dtype == 'object':
+        data[col] = data[col].astype(str).str.strip()
+# ★★★ 여기까지 추가 ★★★
+
 st.title("🎉서울 주요 전광판 광고주 조사🎉")
 
 ###############################################################################
